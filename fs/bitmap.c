@@ -17,13 +17,13 @@ __asm__("cld\n\t" \
 	::"a" (0),"c" (BLOCK_SIZE/4),"D" ((long) (addr)):"cx","di")
 
 #define set_bit(nr,addr) ({\
-register int res __asm__("ax"); \
+register int res; \
 __asm__ __volatile__("btsl %2,%3\n\tsetb %%al": \
 "=a" (res):"0" (0),"r" (nr),"m" (*(addr))); \
 res;})
 
 #define clear_bit(nr,addr) ({\
-register int res __asm__("ax"); \
+register int res; \
 __asm__ __volatile__("btrl %2,%3\n\tsetnb %%al": \
 "=a" (res):"0" (0),"r" (nr),"m" (*(addr))); \
 res;})

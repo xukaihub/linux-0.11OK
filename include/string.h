@@ -87,7 +87,7 @@ return dest;
 
 extern inline int strcmp(const char * cs,const char * ct)
 {
-register int __res __asm__("ax");
+register int __res;
 __asm__("cld\n"
 	"1:\tlodsb\n\t"
 	"scasb\n\t"
@@ -106,7 +106,7 @@ return __res;
 
 extern inline int strncmp(const char * cs,const char * ct,int count)
 {
-register int __res __asm__("ax");
+register int __res;
 __asm__("cld\n"
 	"1:\tdecl %3\n\t"
 	"js 2f\n\t"
@@ -127,7 +127,7 @@ return __res;
 
 extern inline char * strchr(const char * s,char c)
 {
-register char * __res __asm__("ax");
+register char * __res;
 __asm__("cld\n\t"
 	"movb %%al,%%ah\n"
 	"1:\tlodsb\n\t"
@@ -235,7 +235,7 @@ return __res;
 
 extern inline char * strstr(const char * cs,const char * ct)
 {
-register char * __res __asm__("ax");
+register char * __res;
 __asm__("cld\n\t" \
 	"movl %4,%%edi\n\t"
 	"repne\n\t"
@@ -362,7 +362,7 @@ return dest;
 
 extern inline int memcmp(const void * cs,const void * ct,int count)
 {
-register int __res __asm__("ax");
+register int __res;
 __asm__("cld\n\t"
 	"repe\n\t"
 	"cmpsb\n\t"
